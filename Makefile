@@ -6,6 +6,7 @@ ACTIVATE=$(BIN_PATH)/activate
 PIP=$(BIN_PATH)/pip
 FLAKE8=$(BIN_PATH)/flake8
 ISORT=$(BIN_PATH)/isort
+PYTEST=$(BIN_PATH)/pytest
 SRC_PATH=src
 
 
@@ -33,4 +34,7 @@ isort-fix:
 flake8-check:
 	$(FLAKE8) $(SRC_PATH)
 
-test: virtualenv isort-check flake8-check
+pytest:
+	$(PYTEST) $(SRC_PATH)
+
+test: virtualenv isort-check flake8-check pytest
