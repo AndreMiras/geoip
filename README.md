@@ -5,7 +5,7 @@ Web API to MaxMind GeoLite2.
 ## Usage
 Request:
 ```sh
-curl http://localhost:5000/ip/8.8.8.8/
+curl https://geoip2.herokuapp.com/ip/8.8.8.8/
 ```
 Response:
 ```json
