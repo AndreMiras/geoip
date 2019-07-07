@@ -18,7 +18,9 @@ def geoip(ip):
 
 @app.route("/")
 def index():
-    return geoip(request.remote_addr)
+    client_ip = request.environ.get(
+        'HTTP_X_FORWARDED_FOR', request.remote_addr)
+    return geoip(client_ip)
 
 
 if __name__ == "__main__":
