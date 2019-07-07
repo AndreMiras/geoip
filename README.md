@@ -78,3 +78,7 @@ Also works with IPv6.
 ```sh
 curl https://geoip2.herokuapp.com/ip/2001:4860:4860::8888
 ```
+
+## Credits
+This product includes GeoLite2 data created by MaxMind, available from
+[https://www.maxmind.com](https://www.maxmind.com).
