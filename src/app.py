@@ -1,9 +1,10 @@
 import os
 
-from flask import Flask, jsonify, request
+from flask import request
+from flask_api import FlaskAPI
 from geolite2 import geolite2
 
-app = Flask(__name__)
+app = FlaskAPI(__name__)
 
 
 @app.route("/ip/<string:ip>/")
@@ -13,7 +14,7 @@ def geoip(ip):
     geo_info = geo_info or {}
     geo_info.update({'ip': ip})
     geolite2.close()
-    return jsonify(geo_info)
+    return geo_info
 
 
 @app.route("/")
