@@ -9,6 +9,9 @@ app = FlaskAPI(__name__)
 
 @app.route("/ip/<string:ip>")
 def geoip(ip):
+    """
+    Returns geo IP info of the given IP.
+    """
     reader = geolite2.reader()
     geo_info = reader.get(ip)
     geo_info = geo_info or {}
@@ -19,6 +22,9 @@ def geoip(ip):
 
 @app.route("/")
 def index():
+    """
+    Returns geo IP info of the client IP.
+    """
     client_ip = request.environ.get(
         'HTTP_X_FORWARDED_FOR', request.remote_addr)
     return geoip(client_ip)
