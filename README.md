@@ -5,7 +5,7 @@ Web API to MaxMind GeoLite2.
 ## Usage
 Request:
 ```sh
-curl https://geoip2.herokuapp.com/ip/8.8.8.8/
+curl https://geoip2.herokuapp.com/ip/8.8.8.8
 ```
 Response:
 ```json
@@ -59,4 +59,22 @@ Response:
     }
   }
 }
+```
+
+## Endpoints
+
+### URL: [/](https://geoip2.herokuapp.com/)
+The root endpoint returns geo IP info of the client IP.
+```sh
+curl https://geoip2.herokuapp.com
+```
+
+### URL: [/ip/&lt;string:ip&gt;](https://geoip2.herokuapp.com/ip/8.8.8.8)
+It's also possible to provide a custom IP via this endpoint.
+```sh
+curl https://geoip2.herokuapp.com/ip/8.8.8.8
+```
+Also works with IPv6.
+```sh
+curl https://geoip2.herokuapp.com/ip/2001:4860:4860::8888
 ```

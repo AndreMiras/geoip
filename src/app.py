@@ -7,7 +7,7 @@ from geolite2 import geolite2
 app = FlaskAPI(__name__)
 
 
-@app.route("/ip/<string:ip>/")
+@app.route("/ip/<string:ip>")
 def geoip(ip):
     reader = geolite2.reader()
     geo_info = reader.get(ip)
@@ -26,4 +26,5 @@ def index():
 
 if __name__ == "__main__":
     debug = os.environ.get('REALEASE') is None
+    app.url_map.strict_slashes = False
     app.run(host='0.0.0.0', debug=debug)
