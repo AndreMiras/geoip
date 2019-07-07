@@ -2,6 +2,7 @@ VENV_NAME=venv
 BIN_PATH=$(VENV_NAME)/bin
 PYTHON=$(BIN_PATH)/python
 PYTHON_VERSION=python3.7
+ACTIVATE=$(BIN_PATH)/activate
 PIP=$(BIN_PATH)/pip
 FLAKE8=$(BIN_PATH)/flake8
 ISORT=$(BIN_PATH)/isort
@@ -16,6 +17,9 @@ virtualenv:
 
 run: virtualenv
 	$(PYTHON) $(SRC_PATH)/app.py
+
+run-heroku: virtualenv
+	. $(ACTIVATE) && heroku local web
 
 clean:
 	rm -rf venv/
