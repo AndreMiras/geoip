@@ -1,6 +1,6 @@
 import unittest
 
-from flask_api import status
+from flask_api import exceptions, status
 
 from app import app
 
@@ -50,3 +50,21 @@ class AppTestCase(unittest.TestCase):
         assert response.json.keys() == {
             'continent', 'country', 'location', 'registered_country', 'ip'
         }
+
+    def test_header_application_json_indent(self):
+        """
+        This is not currently supported because of a Flask-API upstream bug.
+        Rather than indenting properly, it raises an NotAcceptable exception.
+        https://github.com/flask-api/flask-api/issues/69
+        """
+        headers = {
+            'Accept': 'application/json; indent=2',
+        }
+        with self.assertRaises(exceptions.NotAcceptable) as ex_info:
+            self.client.get('/', headers=headers)
+        ex_info.exception.detail == (
+            'Could not satisfy the request Accept header.'
+        )
+        # this is what it should be when the upstream bug is fixed
+        # assert response.status_code == status.HTTP_200_OK
+        # assert response.data == b'{\n  "ip": "127.0.0.1"\n}'
